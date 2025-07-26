@@ -1,6 +1,6 @@
 # warm-up
 
-## Data architecture: A site for pet-sitting (watching someone's pet while they're gone). People can babysit for multiple pets and pets can have multiple pet sitters.
+### A site for pet-sitting (watching someone's pet while they're gone). People can babysit for multiple pets and pets can have multiple pet sitters.
 
 (Table: **pet_sitters**)
 
@@ -30,7 +30,7 @@ updated_at:datetime
 
 <br>
 
-## You like hosting people for dinner so you want to build a dinner party invitation site. A user can create parties, invite people to a party, and accept an invitation to someone else's party.
+### You like hosting people for dinner so you want to build a dinner party invitation site. A user can create parties, invite people to a party, and accept an invitation to someone else's party.
 
 (Table: **users**)
 
@@ -60,7 +60,7 @@ updated_at:datetime
 
 <br>
 
-## You and your friends just love posting things and following each other. How would you set up the models so a user can follow another user?
+### You and your friends just love posting things and following each other. How would you set up the models so a user can follow another user?
 
 (Table: **users**)
 
