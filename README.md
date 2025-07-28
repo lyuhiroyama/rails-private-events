@@ -1,7 +1,7 @@
 # data model plan:
 
 ### The project:
-<hr>
+
 - A site which allows users to create events and then manage user signups.
 - A user can create events. 
 - A user can attend many events. 
@@ -45,7 +45,7 @@
 
  
 <hr>
-# warm-up
+(warm-up:)
 
 ### A site for pet-sitting (watching someone's pet while they're gone). People can babysit for multiple pets and pets can have multiple pet sitters.
 
