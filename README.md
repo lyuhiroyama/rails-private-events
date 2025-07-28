@@ -14,7 +14,7 @@
 - name:string
 - created_at:datetime
 - updated_at:datetime
-**associations (Model: User)**
+- **associations (Model: User:**
 - has_many :registrations
 - has_many :attending_events, through: :registrations, source:event
 - has_many :created_events, class_name: Event, foreign_key: creator_id
@@ -27,7 +27,7 @@
 - creator_id:integer [foreign key to users]
 - created_at:datetime
 - updated_at:datetime
-**associations: (Model: Event)**
+- **associations: (Model: Event):**
 - has_many :registrations
 - has_many :users_attending, through: registrations, source:users
 - belongs_to :event_creator, class_name: User, foreign_key: creator_id
@@ -39,13 +39,13 @@
 - event_id:integer [foreign key]
 - created_at:datetime
 - updated_at:datetime
-**associations: (Model: Registration)**
+- **associations: (Model: Registration):**
 - belongs_to :users
 - belongs_to :events
 
  
 <hr>
-(warm-up:)
+(warm-up exercises:)
 
 ### A site for pet-sitting (watching someone's pet while they're gone). People can babysit for multiple pets and pets can have multiple pet sitters.
 
