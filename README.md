@@ -1,3 +1,50 @@
+# data model plan:
+
+### The project:
+<hr>
+- A site which allows users to create events and then manage user signups.
+- A user can create events. 
+- A user can attend many events. 
+- An event can be attended by many users. 
+- Events take place at a specific date and at a location (which you can just store as a string, like "Ohtani's House").
+
+
+(Table: **users**)
+- id:integer
+- name:string
+- created_at:datetime
+- updated_at:datetime
+**associations (Model: User)**
+- has_many :registrations
+- has_many :attending_events, through: :registrations, source:event
+- has_many :created_events, class_name: Event, foreign_key: creator_id
+
+
+(Table: **events**)
+- id:integer
+- event_name:string
+- event_date:datetime
+- creator_id:integer [foreign key to users]
+- created_at:datetime
+- updated_at:datetime
+**associations: (Model: Event)**
+- has_many :registrations
+- has_many :users_attending, through: registrations, source:users
+- belongs_to :event_creator, class_name: User, foreign_key: creator_id
+
+
+(Table: **registrations**)
+- id:integer
+- user_id:integer [foreign key]
+- event_id:integer [foreign key]
+- created_at:datetime
+- updated_at:datetime
+**associations: (Model: Registration)**
+- belongs_to :users
+- belongs_to :events
+
+ 
+<hr>
 # warm-up
 
 ### A site for pet-sitting (watching someone's pet while they're gone). People can babysit for multiple pets and pets can have multiple pet sitters.
