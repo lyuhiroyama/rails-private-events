@@ -1,4 +1,5 @@
+# Join table
 class Registration < ApplicationRecord
-  belongs_to :user_id
-  belongs_to :event_id
+  belongs_to :user
+  belongs_to :event
 end
