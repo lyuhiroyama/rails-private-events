@@ -1,5 +1,6 @@
-class RegistrationsController < ApplicationController
+class EventRegistrationsController < ApplicationController
   before_action :set_registration, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /registrations or /registrations.json
   def index
