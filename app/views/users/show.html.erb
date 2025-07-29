@@ -2,6 +2,15 @@
 
 <%= render @user %>
 
+<h2>Events created by <%= @user.name %>:</h2>
+<ul>
+    <% @user.events_created.each do |event| %>
+      <li>
+        <%= link_to event.event_name, event_path(event) %> on <%= event.event_date.strftime("%B %d, %Y") %>
+      </li>
+    <% end %>
+</ul>
+
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
