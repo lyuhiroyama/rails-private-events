@@ -13,7 +13,7 @@ class EventRegistrationsController < ApplicationController
 
   # GET /registrations/new
   def new
-    @registration = Registration.new
+    @registration = EventRegistration.new
   end
 
   # GET /registrations/1/edit
@@ -22,12 +22,13 @@ class EventRegistrationsController < ApplicationController
 
   # POST /registrations or /registrations.json
   def create
-    @registration = Registration.new(registration_params)
+    @event = Event.find(params[:event_id])
+    @registration = EventRegistration.new(user: current_user, event: @event)
 
     respond_to do |format|
       if @registration.save
-        format.html { redirect_to @registration, notice: "Registration was successfully created." }
-        format.json { render :show, status: :created, location: @registration }
+        format.html { redirect_to @event, notice: "Registration was successfully created." }
+        format.json { render @event, status: :created, location: @registration }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @registration.errors, status: :unprocessable_entity }
@@ -50,10 +51,12 @@ class EventRegistrationsController < ApplicationController
 
   # DELETE /registrations/1 or /registrations/1.json
   def destroy
+    @registration = EventRegistration.find(params[:id])
+    @event = @registration.event
     @registration.destroy!
 
     respond_to do |format|
-      format.html { redirect_to registrations_path, status: :see_other, notice: "Registration was successfully destroyed." }
+      format.html { redirect_to @event, status: :see_other, notice: "Registration was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -61,7 +64,7 @@ class EventRegistrationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
-      @registration = Registration.find(params.expect(:id))
+      @registration = EventRegistration.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.

@@ -14,4 +14,9 @@
     <%= event.event_creator.name %>
   </p>
 
+  <p>
+    <strong>Attendees:</strong>
+    <%= event.users_attending.map(&:name).join(", ") %>
+  </p>
+
 </div>

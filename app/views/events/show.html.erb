@@ -2,6 +2,14 @@
 
 <%= render @event %>
 
+<% unless @event.users_attending.include?(current_user) %>
+  <%= button_to "Attend", event_registrations_path(event_id: @event.id), method: :post %>
+<% else %>
+   <% registration = @event.event_registrations.find_by(user: current_user) %>
+  <%= button_to "Unattend", event_registration_path(registration), method: :delete if registration %>
+<% end %>
+
+
 <div>
   <%= link_to "Edit this event", edit_event_path(@event) %> |
   <%= link_to "Back to events", events_path %>
