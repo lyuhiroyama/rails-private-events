@@ -2,11 +2,20 @@
 
 <%= render @user %>
 
-<h2>Events created by <%= @user.name %>:</h2>
+<h2>Events created:</h2>
 <ul>
     <% @user.events_created.each do |event| %>
       <li>
         <%= link_to event.event_name, event_path(event) %> on <%= event.event_date.strftime("%B %d, %Y") %>
+      </li>
+    <% end %>
+</ul>
+
+<h2>Events attended / to attend</h2>
+<ul>
+    <% @user.event_registrations.each do |registration| %>
+      <li>
+        <%= link_to registration.event.event_name, event_path(registration.event) %> on <%= registration.event.event_date.strftime("%B %d, %Y") %>
       </li>
     <% end %>
 </ul>
