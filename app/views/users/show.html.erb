@@ -11,14 +11,24 @@
     <% end %>
 </ul>
 
-<h2>Events attended / to attend</h2>
+<h2>Events attended:</h2>
 <ul>
-    <% @user.event_registrations.each do |registration| %>
+    <% @user.event_registrations.select { |registration| registration.event.event_date > Date.today }.each do |registration| %>
       <li>
         <%= link_to registration.event.event_name, event_path(registration.event) %> on <%= registration.event.event_date.strftime("%B %d, %Y") %>
       </li>
     <% end %>
 </ul>
+
+<h2>Events to attend:</h2>
+<ul>
+    <% @user.event_registrations.select { |registration| registration.event.event_date < Date.today }.each do |registration| %>
+      <li>
+        <%= link_to registration.event.event_name, event_path(registration.event) %> on <%= registration.event.event_date.strftime("%B %d, %Y") %>
+      </li>
+    <% end %>
+</ul>
+
 
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
