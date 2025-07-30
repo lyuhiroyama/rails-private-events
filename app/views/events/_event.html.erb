@@ -11,12 +11,16 @@
 
   <p>
     <strong>Creator:</strong>
-    <%= event.event_creator.name %>
+    <%= link_to event.event_creator.name, user_path(event.event_creator) %>
   </p>
 
   <p>
     <strong>Attendees:</strong>
-    <%= event.users_attending.map(&:name).join(", ") %>
+    <%= event.users_attending.map {
+      |user| link_to user.name, user_path(user)
+      }
+      .join(", ").html_safe
+    %>
   </p>
 
 </div>
