@@ -2,15 +2,21 @@
 
 <% content_for :title, "Events" %>
 
-<h1>All events are listed here:</h1>
+<h2> Upcoming Events:</h2>
 
-<div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
+<ul>
+  <% Event.upcoming.each do |event| %>
+    <li><%= link_to event.event_name, event_path(event) %> on <%= event.event_date.strftime("%B %d, %Y") %></li>
   <% end %>
-</div>
+</ul>
+
+<h2> Past Events:</h2>
+
+<ul>
+  <% Event.past.each do |event| %>
+    <li><%= link_to event.event_name, event_path(event) %> on <%= event.event_date.strftime("%B %d, %Y") %></li>
+  <% end %>
+</ul>
+
 
 <%= link_to "New event", new_event_path %>
