@@ -25,6 +25,9 @@
     <% @user.event_registrations.select { |registration| registration.event.event_date < Date.today }.each do |registration| %>
       <li>
         <%= link_to registration.event.event_name, event_path(registration.event) %> on <%= registration.event.event_date.strftime("%B %d, %Y") %>
+        <br><br>
+        <%= button_to 'Unattend', event_registration_path(registration), method: :delete, data: { confirm: 'Are you sure you want to un-attend this event?' } %>
+        <br>
       </li>
     <% end %>
 </ul>
