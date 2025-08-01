@@ -9,6 +9,10 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
+    @event = Event.find(params[:id])
+    unless @event.event_creator == current_user || @event.invited_users.include?(current_user)
+      redirect_to root_path, alert: "You are not invited to this event."
+    end
   end
 
   # GET /events/new
